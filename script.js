@@ -1,6 +1,8 @@
 function change_banner(banner) {
-  if (banner.width < 1100) {
-    console.log(banner);
+  let style = getComputedStyle(banner);
+  if (parseInt(style.width) < 1100) {
+    console.log(parseInt(style.width));
+    banner.style.height = "500px";
   }
 }
 
@@ -10,13 +12,12 @@ function change_banner(banner) {
   const body = document.querySelector("body");
   const banner = document.querySelector("#banner");
   const sections = document.querySelectorAll("section");
-  const ban = document.getElementById("banner");
   let mode = "dark";
   addEventListener("resize", (event) => {
     let width = event.target.innerWidth;
     if (width < 1200) {
     }
-    change_banner(getComputedStyle(ban));
+    change_banner(banner);
     // console.log(event.target);
   });
 
