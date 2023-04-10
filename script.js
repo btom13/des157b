@@ -132,7 +132,7 @@
   function changeBanner() {
     let width = parseInt(bannerStyle.width);
     if (width < 1100) {
-      banner.style.height = 250 + (1100 - width) / 4 + "px";
+      banner.style.height = 250 + (1100 - width) / 3 + "px";
     }
   }
   changeBanner();
