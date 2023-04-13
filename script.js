@@ -127,17 +127,6 @@
   animate(equations);
   animate(theorems);
 
-  let bannerStyle = getComputedStyle(banner);
-  // changes the size of the banner if the size of the window changes
-  function changeBanner() {
-    let width = parseInt(bannerStyle.width);
-    if (width < 1100) {
-      banner.style.height = 250 + (1100 - width) / 3 + "px";
-    }
-  }
-  changeBanner();
-  addEventListener("resize", changeBanner);
-
   numbers.addEventListener("click", function () {
     if (mode === "dark") {
       body.classList.add("switch");
