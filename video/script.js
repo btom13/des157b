@@ -6,6 +6,7 @@
   const OLL = document.querySelector("#OLL");
   const PLL = document.querySelector("#PLL");
   const vid = document.querySelector("#video");
+  const quote = document.querySelector("h2");
   let times = [0, 2.44, 12.26, 14.21, 17.09];
   let objs = [Cross, F2L, OLL, PLL];
   vid.ontimeupdate = (event) => {
@@ -16,6 +17,11 @@
       } else {
         objs[i].classList.remove("show");
       }
+    }
+    if (14.5 <= time && time < 17) {
+      quote.classList.add("show");
+    } else {
+      quote.classList.remove("show");
     }
   };
   for (let i = 0; i < objs.length; i++) {
