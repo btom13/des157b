@@ -9,6 +9,25 @@
   const quote = document.querySelector("h2");
   let times = [0, 2.44, 12.26, 14.21, 17.09];
   let objs = [Cross, F2L, OLL, PLL];
+
+  // nasty stuff but it has to be done
+  let sheet = document.styleSheets[1];
+  let smallHeight =
+    document.querySelector("#Cross > p").offsetHeight +
+    Cross.offsetHeight +
+    "px";
+  let bigHeight =
+    document.querySelector("#F2L > p").offsetHeight + F2L.offsetHeight + "px";
+  sheet.cssRules[5].style["max-height"] = smallHeight;
+  sheet.cssRules[7].style["max-height"] = smallHeight;
+  sheet.cssRules[6].style["max-height"] = bigHeight;
+  sheet.cssRules[8].style["max-height"] = bigHeight;
+
+  sheet.cssRules[17].style["top"] =
+    -1 * document.querySelector("#Cross > p").offsetHeight + "px";
+  sheet.cssRules[18].style["top"] =
+    -1 * document.querySelector("#F2L > p").offsetHeight + "px";
+
   vid.ontimeupdate = (event) => {
     let time = event.target.currentTime;
     for (let i = 0; i < objs.length; i++) {
