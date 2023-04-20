@@ -11,7 +11,7 @@
   let objs = [Cross, F2L, OLL, PLL];
 
   // nasty stuff but it has to be done
-  let sheet = document.styleSheets[1];
+  let sheet = document.styleSheets[document.styleSheets.length - 1];
   let smallHeight =
     document.querySelector("#Cross > p").offsetHeight +
     Cross.offsetHeight +
@@ -30,7 +30,7 @@
   sheet.cssRules[17].style["top"] =
     -1 * document.querySelector("#Cross > p").offsetHeight + 2 + "px";
   sheet.cssRules[18].style["top"] =
-    -1 * document.querySelector("#F2L > p").offsetHeight + 2 + "px";
+    -1 * document.querySelector("#F2L > p").offsetHeight + 8 + "px";
 
   vid.ontimeupdate = (event) => {
     let time = event.target.currentTime;
