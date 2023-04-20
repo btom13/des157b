@@ -1,0 +1,121 @@
+.outer-container {
+  background-color: black;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+}
+.inner-container {
+  display: block;
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#reconstruction {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  left: 10px;
+  top: 10px;
+  font-size: 20px;
+  font-family: Helvetica;
+  color: #fff;
+  width: 250px;
+}
+
+.step {
+  width: 250px;
+  position: relative;
+  max-height: 40.5px;
+  transition: max-height 0.5s;
+  background-color: #161b40;
+}
+
+.small:hover {
+  max-height: 54px;
+}
+
+.big:hover {
+  max-height: 67.5px;
+}
+
+.step:last-of-type p {
+  margin-bottom: 5px;
+}
+
+#reconstruction:not(:hover) .small.show {
+  max-height: 54px;
+}
+
+#reconstruction:not(:hover) .big.show {
+  max-height: 67.5px;
+}
+
+h1 {
+  background-color: #161b40;
+  color: #43bee5;
+  /* color: #2f3140; */
+  position: relative;
+  z-index: 2;
+  margin: 0px;
+  padding: 5px;
+  font-size: medium;
+}
+strong {
+  font-size: xx-large;
+}
+
+p {
+  color: lightgray;
+  font-size: small;
+  z-index: 1;
+  width: 95%;
+  margin: 0px;
+  padding-left: 5px;
+  position: relative;
+  transition: top 0.5s;
+}
+
+.small > p {
+  top: -13.5px;
+}
+
+.big > p {
+  top: -27px;
+}
+
+#reconstruction:not(:hover) .show > p {
+  top: 0px;
+}
+
+.step:hover p {
+  top: 0px;
+}
+
+video {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+
+.fa-solid {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 36px;
+  color: antiquewhite;
+  display: none;
+}
+
+.fa-solid:hover {
+  cursor: pointer;
+}
