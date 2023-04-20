@@ -20,7 +20,7 @@
   let bigHeight =
     document.querySelector("#F2L > p").offsetHeight +
     F2L.offsetHeight +
-    2 +
+    8 +
     "px";
   sheet.cssRules[5].style["max-height"] = smallHeight;
   sheet.cssRules[7].style["max-height"] = smallHeight;
