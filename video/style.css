@@ -72,19 +72,19 @@ h1 {
   z-index: 2;
   margin: 0px;
   padding: 5px;
-  font-size: medium;
+  font-size: 18px;
 }
 h1:hover {
   cursor: pointer;
 }
 strong {
-  font-size: xx-large;
+  font-size: 30px;
 }
 
 p {
   box-sizing: border-box;
   color: lightgray;
-  font-size: small;
+  font-size: 12px;
   z-index: 1;
   width: 100%;
   margin: 0px;
