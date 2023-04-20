@@ -15,18 +15,22 @@
   let smallHeight =
     document.querySelector("#Cross > p").offsetHeight +
     Cross.offsetHeight +
+    2 +
     "px";
   let bigHeight =
-    document.querySelector("#F2L > p").offsetHeight + F2L.offsetHeight + "px";
+    document.querySelector("#F2L > p").offsetHeight +
+    F2L.offsetHeight +
+    2 +
+    "px";
   sheet.cssRules[5].style["max-height"] = smallHeight;
   sheet.cssRules[7].style["max-height"] = smallHeight;
   sheet.cssRules[6].style["max-height"] = bigHeight;
   sheet.cssRules[8].style["max-height"] = bigHeight;
 
   sheet.cssRules[17].style["top"] =
-    -1 * document.querySelector("#Cross > p").offsetHeight + "px";
+    -1 * document.querySelector("#Cross > p").offsetHeight + 2 + "px";
   sheet.cssRules[18].style["top"] =
-    -1 * document.querySelector("#F2L > p").offsetHeight + "px";
+    -1 * document.querySelector("#F2L > p").offsetHeight + 2 + "px";
 
   vid.ontimeupdate = (event) => {
     let time = event.target.currentTime;
@@ -57,8 +61,6 @@
     });
   }
 
-  // restart.sty("display", "block");
-  // console.log((restart.style.display = "block"));
   restart.addEventListener("click", () => {
     restart.style.display = "none";
     vid.currentTime = 0;
@@ -67,11 +69,4 @@
   vid.addEventListener("ended", () => {
     restart.style.display = "block";
   });
-  // restart.addEventListener("click", function () {
-  //   if (!document.fullscreenElement) {
-  //     document.documentElement.requestFullscreen();
-  //   } else {
-  //     document.exitFullscreen();
-  //   }
-  // });
 })();
