@@ -1,0 +1,34 @@
+.cat {
+  text-align: center;
+  align-items: center;
+  height: 100px;
+  width: 100px;
+  line-height: 100px;
+  background-color: orange;
+
+  position: absolute;
+  top: 20%;
+  left: 10%;
+  border-radius: 50%;
+  display: inline-block;
+}
+body {
+  background-color: gray;
+  height: 100vh;
+  width: 100vw;
+}
+#data {
+  display: flex;
+  flex-wrap: wrap;
+}
+.datum {
+  background-color: aqua;
+  margin: 10px auto;
+  padding: 10px;
+}
+h1 {
+  font-size: 24px;
+}
+h2 {
+  font-size: 20px;
+}
