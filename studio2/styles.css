@@ -7,8 +7,8 @@
   background-color: orange;
 
   position: absolute;
-  top: 20%;
-  left: 10%;
+  /* top: 20%; */
+  /* left: 10%; */
   border-radius: 50%;
   display: inline-block;
 }
@@ -16,6 +16,9 @@ body {
   background-color: gray;
   height: 100vh;
   width: 100vw;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
 }
 #data {
   display: flex;
