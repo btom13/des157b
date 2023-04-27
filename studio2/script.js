@@ -1,7 +1,7 @@
 (() => {
   "use strict";
   const acceleration = -1;
-  const body = document.querySelector("#cat-div");
+  const cat_div = document.querySelector("#cat-div");
 
   class Cat {
     constructor(x = undefined, y = undefined, vx = undefined, vy = undefined) {
@@ -9,24 +9,28 @@
       this.obj = document.createElement("div");
       this.obj.className = "cat";
       this.obj.innerHTML = "This is a cat";
+      cat_div.appendChild(this.obj);
       this.x = Math.round(
-        Math.random() * (body.offsetWidth - 100) + this.obj.offsetWidth
+        Math.random() * (cat_div.offsetWidth - this.obj.offsetWidth) +
+          cat_div.offsetLeft
       );
-      this.y = Math.round(Math.random() * (body.offsetHeight - 600) + 350);
-      this.vx = Math.round(Math.random() * 20 - 10);
-      this.vy = Math.round(Math.random() * 10 + 5);
+      this.y = Math.round(
+        Math.random() * (cat_div.offsetHeight - this.obj.offsetHeight - 200) +
+          200
+      );
+      this.vx = Math.round(Math.random() * 30 - 15);
+      this.vy = Math.round(Math.random() * 25 + 5);
       this.obj.style.bottom = this.y + "px";
       this.obj.style.left = this.x + "px";
       this.held = 0;
       this.mdown = this.mousedown.bind(this);
       this.mup = this.mouseup.bind(this);
       this.obj.addEventListener("mousedown", this.mdown);
-      body.appendChild(this.obj);
     }
 
     mouseup(event) {
       this.held = 0;
-      body.removeEventListener("mousemove", this.dragger);
+      cat_div.removeEventListener("mousemove", this.dragger);
       window.removeEventListener("mouseup", this.mup);
       let dt = Date.now() - this.pastTime[1];
       if (dt == 0) {
@@ -49,7 +53,7 @@
       this.relativeY = event.layerY;
       this.dragger = this.drag.bind(this);
       window.addEventListener("mouseup", this.mup);
-      body.addEventListener("mousemove", this.dragger);
+      cat_div.addEventListener("mousemove", this.dragger);
     }
 
     drag(event) {
@@ -61,15 +65,19 @@
       this.pasty[0] = this.y;
       this.x = event.clientX - this.relativeX;
       this.y =
-        body.offsetHeight -
+        cat_div.offsetHeight -
         (event.clientY - this.relativeY) -
         this.obj.offsetHeight;
-      if (this.x < 0) this.x = 0;
-      if (this.x > body.offsetWidth - this.obj.offsetWidth)
-        this.x = body.offsetWidth - this.obj.offsetWidth;
+      if (this.x < cat_div.offsetLeft) this.x = cat_div.offsetLeft;
+      if (
+        this.x >
+        cat_div.offsetWidth - this.obj.offsetWidth + cat_div.offsetLeft
+      )
+        this.x =
+          cat_div.offsetWidth - this.obj.offsetWidth + cat_div.offsetLeft;
       if (this.y < 0) this.y = 0;
-      if (this.y > body.offsetHeight - this.obj.offsetHeight)
-        this.y = body.offsetHeight - this.obj.offsetHeight;
+      if (this.y > cat_div.offsetHeight - this.obj.offsetHeight)
+        this.y = cat_div.offsetHeight - this.obj.offsetHeight;
       this.obj.style.bottom = this.y + "px";
       this.obj.style.left = this.x + "px";
     }
@@ -92,14 +100,17 @@
       }
 
       // ceiling collision
-      if (this.y > body.offsetHeight - this.obj.offsetHeight) {
+      if (this.y > cat_div.offsetHeight - this.obj.offsetHeight) {
         this.vy *= -1;
         this.x += this.vx * dt;
         this.y += this.vy * dt + (1 / 2) * dt * dt * acceleration;
       }
 
       // wall collision
-      if (this.x < 0 || this.x > body.offsetWidth - this.obj.offsetWidth) {
+      if (
+        this.x < cat_div.offsetLeft ||
+        this.x > cat_div.offsetWidth - this.obj.offsetWidth + cat_div.offsetLeft
+      ) {
         this.vx *= -1;
         this.x += this.vx * dt;
         this.y += this.vy * dt + (1 / 2) * dt * dt * acceleration;
@@ -126,14 +137,13 @@
     .then((data) => {
       const dat = document.getElementById("data");
       for (const key in data) {
-        console.log(key);
         if (Object.hasOwnProperty.call(data, key)) {
           const val = data[key];
           const pair = document.createElement("div");
           const time = document.createElement("h2");
           time.innerHTML = key;
           const cats = document.createElement("h3");
-          cats.innerHTML = val;
+          cats.innerHTML = val + (parseInt(val) != 1 ? " cats" : " cat");
           pair.onclick = () => {
             const a = [];
             for (let i = 0; i < parseInt(val); i++) {

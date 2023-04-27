@@ -15,22 +15,18 @@
 }
 
 #sidebar {
+  box-sizing: border-box;
   display: flex;
   flex-flow: column;
-  /* display: block; */
+  border-right: 3px solid black;
   max-width: 300px;
   height: 100vh;
-}
-
-h1 {
-  padding: 0px;
-  margin: 0px;
 }
 
 body {
   display: flex;
   flex-flow: row;
-  background-color: gray;
+  background-color: #ffeeb3;
   height: 100vh;
   width: 100vw;
   max-width: 100vw;
@@ -47,17 +43,35 @@ body {
 #data {
   display: flex;
   flex-wrap: wrap;
-  max-width: 150px;
+  background-color: orange;
+  max-width: 200px;
+
   height: 100%;
+  width: 100%;
 }
 .datum {
-  background-color: aqua;
-  margin: 5px auto;
+  box-sizing: border-box;
+  background-color: #b8e7e1;
+  /* margin: 5px auto; */
   padding: 0px;
   cursor: pointer;
   display: flex;
-  width: 100px;
+  /* margin-top: 6vh; */
+  border-bottom: 3px solid black;
+  width: 100%;
 }
+
+h1 {
+  box-sizing: border-box;
+  border-bottom: 3px solid black;
+  padding: 5px;
+  margin: 0px;
+  background-color: #b8e7e1;
+  text-align: center;
+  font-size: 14px;
+  max-width: 200px;
+}
+
 h2 {
   margin: auto;
   display: inline;
