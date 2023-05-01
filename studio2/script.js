@@ -8,7 +8,6 @@
       this.bounce = 0;
       this.obj = document.createElement("div");
       this.obj.className = "cat";
-      this.obj.innerHTML = "This is a cat";
       cat_div.appendChild(this.obj);
       this.x = Math.round(
         Math.random() * (cat_div.offsetWidth - this.obj.offsetWidth) +
