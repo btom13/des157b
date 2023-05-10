@@ -1,7 +1,64 @@
 (() => {
+  // const position = { x: 0, y: 0 };
+  // interact(".draggable").draggable({
+  //   listeners: {
+  //     start(event) {
+  //       console.log(event.type, event.target);
+  //     },
+  //     move(event) {
+  //       position.x += event.dx;
+  //       position.y += event.dy;
+
+  //       event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
+  //     },
+  //   },
+  //   modifiers: [
+  //     interact.modifiers.snap({
+  //       relativePoints: [
+  //         { x: 0, y: 0 }, // snap relative to the element's top-left,
+  //         { x: 0.5, y: 0.5 }, // to the center
+  //         { x: 1, y: 1 }, // and to the bottom-right
+  //       ],
+  //     }),
+  //   ],
+  // });
+  // let container = document.querySelector(".grid-container");
+  // // snap to container using interact.js
+  // interact(".draggable").draggable({
+  //   listeners: {
+  //     start(event) {
+  //       console.log(event.type, event.target);
+  //     },
+  //     move(event) {
+
+  // var gridTarget = interact.snappers.grid({
+  //   // can be a pair of x and y, left and top,
+  //   // right and bottom, or width, and height
+  //   x: 50,
+  //   y: 50,
+
+  //   // optional
+  //   range: 10,
+
+  //   // optional
+  //   offset: { x: 5, y: 10 },
+
+  //   // optional
+  //   limits: {
+  //     top: 0,
+  //     left: 0,
+  //     bottom: 500,
+  //     height: 500,
+  //   },
+  // });
+
+  interact(".draggable").draggable({
+    modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
+  });
+
   const rows = 10;
   const cols = 10;
-  const timestep = 1000;
+  const timestep = 500;
   const robots = [];
   const objects = [robots];
   const registers = ["eax", "ebx", "ecx"];
@@ -533,7 +590,6 @@
     }
   }
 
-  let container = document.querySelector(".grid-container");
   for (let i = 0; i < rows * cols; i++) {
     const gridItem = document.createElement("div");
     gridItem.classList.add("grid-item");
