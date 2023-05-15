@@ -1,61 +1,5 @@
 (() => {
-  // const position = { x: 0, y: 0 };
-  // interact(".draggable").draggable({
-  //   listeners: {
-  //     start(event) {
-  //       console.log(event.type, event.target);
-  //     },
-  //     move(event) {
-  //       position.x += event.dx;
-  //       position.y += event.dy;
-
-  //       event.target.style.transform = `translate(${position.x}px, ${position.y}px)`;
-  //     },
-  //   },
-  //   modifiers: [
-  //     interact.modifiers.snap({
-  //       relativePoints: [
-  //         { x: 0, y: 0 }, // snap relative to the element's top-left,
-  //         { x: 0.5, y: 0.5 }, // to the center
-  //         { x: 1, y: 1 }, // and to the bottom-right
-  //       ],
-  //     }),
-  //   ],
-  // });
-  // let container = document.querySelector(".grid-container");
-  // // snap to container using interact.js
-  // interact(".draggable").draggable({
-  //   listeners: {
-  //     start(event) {
-  //       console.log(event.type, event.target);
-  //     },
-  //     move(event) {
-
-  // var gridTarget = interact.snappers.grid({
-  //   // can be a pair of x and y, left and top,
-  //   // right and bottom, or width, and height
-  //   x: 50,
-  //   y: 50,
-
-  //   // optional
-  //   range: 10,
-
-  //   // optional
-  //   offset: { x: 5, y: 10 },
-
-  //   // optional
-  //   limits: {
-  //     top: 0,
-  //     left: 0,
-  //     bottom: 500,
-  //     height: 500,
-  //   },
-  // });
-
-  interact(".draggable").draggable({
-    modifiers: [interact.modifiers.snap({ targets: [gridTarget] })],
-  });
-
+  let container = document.querySelector(".grid-container");
   const rows = 10;
   const cols = 10;
   const timestep = 500;
@@ -150,34 +94,6 @@
       this.updatePosition();
     }
 
-    // each line is a command
-    // here are some commands:
-    // comments are indicated by a # at the start of the line
-    // nop;
-    // walk 3;
-    // walk 1;
-    // turn left;
-    // turn right;
-    // turn around;
-    // move eax 3; puts 3 into eax
-    // move ebx eax; puts eax into ebx
-    // move ecx ebx; puts ebx into ecx
-    // add eax ebx; adds ebx and eax and puts it into eax
-    // add eax 5; adds 5 to eax and puts it into eax
-    // sub eax ebx; subtracts ebx from eax and puts it into eax
-    // sub eax 5; subtracts 5 from eax and puts it into eax
-    // mul eax ebx; multiplies ebx and eax and puts it into eax
-    // mul eax 5; multiplies 5 and eax and puts it into eax
-    // div eax ebx; divides eax by ebx and puts it into eax
-    // div eax 5; divides eax by 5 and puts it into eax
-    // cmp eax ebx; compares eax and ebx
-    // jmp 3; jumps 3 lines if the last cmp was true
-    // jmp -3; jumps back 3 lines if the last cmp was true
-    // jne 3; jumps 3 lines if the last cmp was false
-    // jne -3; jumps back 3 lines if the last cmp was false
-
-    // first this checks if every line is valid
-    // then it runs the code
     async parseText() {
       const lines = this.robotText
         .querySelector("textarea")
@@ -596,9 +512,102 @@
     container.appendChild(gridItem);
   }
 
+  function onMove(event) {
+    const target = event.target;
+    // keep the dragged position in the data-x/data-y attributes
+    const x = (parseFloat(target.getAttribute("data-x")) || 0) + event.dx,
+      y = (parseFloat(target.getAttribute("data-y")) || 0) + event.dy;
+
+    // translate the element
+    target.style.webkitTransform = target.style.transform =
+      "translate(calc(" + x + "px - 50%), calc(" + y + "px - 50%))";
+
+    // update the position attributes
+    target.setAttribute("data-x", x);
+    target.setAttribute("data-y", y);
+  }
+  const gridItems = document.querySelectorAll(".grid-item");
+  const gameArea = document.querySelector("#game-area");
+  const sidebar = document.querySelector("#sidebar");
+
+  function make_bot() {
+    const bot = document.createElement("i");
+    bot.style.position = "absolute";
+    bot.classList.add("fa-solid");
+    bot.classList.add("fa-robot");
+    bot.classList.add("draggable");
+    bot.setAttribute("data-x", 0);
+    bot.setAttribute("data-y", 0);
+    bot.style.top = "10%";
+    bot.style.left = "50%";
+    bot.setAttribute("data-clicked", 0);
+
+    gameArea.appendChild(bot);
+    interact(bot).draggable({
+      inertia: false,
+      onstart: function (event) {
+        if (event.target.getAttribute("data-clicked") == 0) {
+          event.target.setAttribute("data-clicked", 1);
+          make_bot();
+        }
+      },
+      onmove: onMove,
+    });
+  }
+
+  make_bot();
+  interact(sidebar).dropzone({
+    accept: ".fa-robot",
+    overlap: "center",
+    ondrop: function (event) {
+      gameArea.appendChild(event.relatedTarget);
+      event.relatedTarget.remove();
+    },
+  });
+
+  interact(gameArea).dropzone({
+    accept: ".fa-robot",
+    overlap: "center",
+    ondrop: function (event) {
+      gameArea.appendChild(event.relatedTarget);
+      event.relatedTarget.remove();
+    },
+  });
+
+  gridItems.forEach((gridItem, index) => {
+    interact(gridItem).dropzone({
+      accept: ".fa-robot",
+      overlap: "center",
+      ondragenter: function (event) {
+        // console.log(event.relatedTarget);
+        gridItem.classList.add("drop-target");
+        event.relatedTarget.classList.add("can-drop");
+        event.relatedTarget.setAttribute("data-row", Math.floor(index / cols));
+        event.relatedTarget.setAttribute("data-col", index % cols);
+      },
+      ondragleave: function (event) {
+        gridItem.classList.remove("drop-target");
+        event.relatedTarget.classList.remove("can-drop");
+      },
+      ondrop: function (event) {
+        gridItem.appendChild(event.relatedTarget);
+        gridItem.classList.remove("drop-target");
+        event.relatedTarget.style.top = "50%";
+        event.relatedTarget.style.position = "relative";
+        event.relatedTarget.classList.remove("can-drop");
+        event.relatedTarget.style.webkitTransform =
+          event.relatedTarget.style.transform = `translate(-50%, -50%)`;
+        event.relatedTarget.setAttribute("data-x", 0);
+        event.relatedTarget.setAttribute("data-y", 0);
+      },
+    });
+    // console.log(gridItem, index);
+  });
+
   robots.push(
-    new Robot(document.querySelectorAll(".grid-item")[robots.length], 1, 1)
+    new Robot(document.querySelectorAll(".grid-item")[robots.length], 2, 2)
   );
+
   robots.push(
     new Robot(
       document.querySelectorAll(".grid-item")[robots.length],
@@ -607,14 +616,18 @@
       "red"
     )
   );
-  robots.push(
-    new Robot(
-      document.querySelectorAll(".grid-item")[robots.length],
-      7,
-      7,
-      "blue"
-    )
-  );
+  robots[1].robotText
+    .querySelector(".text-div")
+    .querySelector("textarea").value =
+    "# moves 3 into\n# eax variable\nmove eax 3;\nwalk 1;\nturn left;\n# eax += 1\nadd eax 1;\n# if eax != 10\ncmp eax 10;\n# go back 7\njne -7;\n# should stop\n# after 7\n# moves\n";
+  const lineNumbers = robots[1].robotText
+    .querySelector(".text-div")
+    .querySelector(".line-numbers");
+  let html = "";
+  for (let i = 0; i < 14 + 1; i++) {
+    html += `<div class="line-number">${i + 1}</div>`;
+  }
+  lineNumbers.innerHTML = html;
   async function run_bots() {
     // wait for all bots to parse text
     let promise = await Promise.all(
@@ -645,37 +658,6 @@
 
   document.querySelector(".fa-play").addEventListener("click", run_bots);
   document.querySelector(".fa-stop").addEventListener("click", reset);
-  let index = 0;
-
-  // document.addEventListener("keydown", (event) => {
-  //   if (event.key === "r") {
-  //     index++;
-  //     index = index % robots.length;
-  //   }
-  //   switch (event.key) {
-  //     case "w":
-  //       robots[index].moveUp();
-  //       break;
-  //     case "s":
-  //       robots[index].moveDown();
-  //       break;
-  //     case "a":
-  //       robots[index].moveLeft();
-  //       break;
-  //     case "d":
-  //       robots[index].moveRight();
-  //       break;
-  //     case "e":
-  //       robots[index].rotate(1);
-  //       break;
-  //     case "q":
-  //       robots[index].rotate(-1);
-  //       break;
-  //     case "p":
-  //       robots[index].moveForward(1);
-  //       break;
-  //   }
-  // });
   const inputBox = document.querySelectorAll("textarea");
   inputBox.forEach((e) => {
     e.addEventListener("input", () => {
