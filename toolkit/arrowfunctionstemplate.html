@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Arrow Functions</title>
+    <style>
+      html {
+        background-color: #efefef;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        color: #333;
+        line-height: 1.4em;
+        max-width: 800px;
+        margin: auto;
+        padding: 20px;
+        background-color: #fff;
+      }
+
+      code {
+        font-family: "Courier New", Courier, monospace;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>A changed H1</h1>
+    <p>
+      This is a function that creates a bot icon HTML element and assigns all of
+      its classes and data. It also makes it draggable, and creates a new bot in
+      the original location when it first gets dragged. This makes it so that
+      infinite bots can be dragged from one starting location. This is from my
+      library liberty project.
+    </p>
+
+    <h2>Named Function</h2>
+    <code>
+      <pre>
+function make_bot() {
+    const bot = document.createElement("i");
+    bot.style.position = "absolute";
+    bot.classList.add("fa-solid");
+    bot.classList.add("fa-robot");
+    bot.classList.add("draggable");
+    bot.setAttribute("data-x", 0);
+    bot.setAttribute("data-y", 0);
+    bot.style.top = "10%";
+    bot.style.left = "50%";
+    bot.setAttribute("data-clicked", 0);
+
+    gameArea.appendChild(bot);
+    interact(bot).draggable({
+        inertia: false,
+        onstart: function (event) {
+            if (event.target.getAttribute("data-clicked") == 0) {
+                event.target.setAttribute("data-clicked", 1);
+                make_bot();
+            }
+        },
+        onmove: onMove,
+    });
+}
+        </pre
+      >
+    </code>
+
+    <h2>Function Expression</h2>
+    <code>
+      <pre>
+const make_bot = function () {
+    const bot = document.createElement("i");
+    bot.style.position = "absolute";
+    bot.classList.add("fa-solid");
+    bot.classList.add("fa-robot");
+    bot.classList.add("draggable");
+    bot.setAttribute("data-x", 0);
+    bot.setAttribute("data-y", 0);
+    bot.style.top = "10%";
+    bot.style.left = "50%";
+    bot.setAttribute("data-clicked", 0);
+
+    gameArea.appendChild(bot);
+    interact(bot).draggable({
+        inertia: false,
+        onstart: function (event) {
+            if (event.target.getAttribute("data-clicked") == 0) {
+                event.target.setAttribute("data-clicked", 1);
+                make_bot();
+            }
+        },
+        onmove: onMove,
+    });
+}
+        </pre
+      >
+    </code>
+
+    <h2>Arrow Function</h2>
+    <code>
+      <pre>
+const make_bot = () => {
+    const bot = document.createElement("i");
+    bot.style.position = "absolute";
+    bot.classList.add("fa-solid");
+    bot.classList.add("fa-robot");
+    bot.classList.add("draggable");
+    bot.setAttribute("data-x", 0);
+    bot.setAttribute("data-y", 0);
+    bot.style.top = "10%";
+    bot.style.left = "50%";
+    bot.setAttribute("data-clicked", 0);
+
+    gameArea.appendChild(bot);
+    interact(bot).draggable({
+        inertia: false,
+        onstart: function (event) {
+            if (event.target.getAttribute("data-clicked") == 0) {
+                event.target.setAttribute("data-clicked", 1);
+                make_bot();
+            }
+        },
+        onmove: onMove,
+    });
+}
+        </pre
+      >
+    </code>
+
+    <footer>Brian Tom</footer>
+  </body>
+</html>
