@@ -46,12 +46,12 @@
   m.on("click", onMapClick);
 
   const map = document.querySelector("#map");
-  // const maximize = document.querySelector(".fa-maximize");
-  // maximize.addEventListener("click", () => {
-  //   map.classList.toggle("max");
-  //   maximize.classList.toggle("fa-compress");
-  //   maximize.classList.toggle("fa-maximize");
-  // });
+  const maximize = document.querySelector(".fa-compress");
+  maximize.addEventListener("click", () => {
+    map.classList.toggle("max");
+    maximize.classList.toggle("fa-compress");
+    maximize.classList.toggle("fa-maximize");
+  });
 
   const locations = await fetch("./images/location.json");
   const data = await locations.json();
