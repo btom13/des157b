@@ -1,7 +1,6 @@
 const piexif = require("piexifjs");
 const fs = require("fs");
 const Jimp = require("jimp");
-
 if (!fs.existsSync("./location.json")) {
   fs.writeFileSync("./location.json", JSON.stringify({}));
 }
