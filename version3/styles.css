@@ -42,6 +42,19 @@ img {
   left: 45%;
 }
 
+.temp-link-2 {
+  width: 100px;
+  height: 100px;
+  background-color: green;
+  position: absolute;
+  top: 55%;
+  left: 55%;
+}
+
 .temp-link:hover {
+  cursor: pointer;
+}
+
+.temp-link-2:hover {
   cursor: pointer;
 }

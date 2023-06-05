@@ -1,4 +1,34 @@
 (async () => {
+  // const canvas = document.getElementById("compass");
+  // const ctx = canvas.getContext("2d");
+  // canvas.width = 300;
+  // canvas.height = 300;
+  // const centerX = canvas.width / 2;
+  // const centerY = canvas.height / 2;
+  // const compassAngle = 45;
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // ctx.beginPath();
+  // ctx.arc(centerX, centerY, 130, 0, 2 * Math.PI);
+  // ctx.lineWidth = 4;
+  // ctx.strokeStyle = "#333";
+  // ctx.stroke();
+  // ctx.beginPath();
+  // ctx.moveTo(centerX, centerY);
+  // const endX = centerX + Math.sin(compassAngle * (Math.PI / 180)) * 100;
+  // const endY = centerY - Math.cos(compassAngle * (Math.PI / 180)) * 100;
+  // ctx.lineTo(endX, endY);
+  // ctx.lineWidth = 2;
+  // ctx.strokeStyle = "red";
+  // ctx.stroke();
+  // ctx.beginPath();
+  // ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+  // ctx.fillStyle = "black";
+  // ctx.fill();
+  // ctx.font = "16px Arial";
+  // ctx.fillStyle = "#333";
+  // ctx.textAlign = "center";
+  // ctx.fillText(`Angle: ${compassAngle}°`, centerX, centerY + 80);
+
   const img = document.querySelector("#img");
   const guess = document.querySelector("#guess");
   const dialog = document.querySelector("dialog");
@@ -46,12 +76,12 @@
   m.on("click", onMapClick);
 
   const map = document.querySelector("#map");
-  // const maximize = document.querySelector(".fa-maximize");
-  // maximize.addEventListener("click", () => {
-  //   map.classList.toggle("max");
-  //   maximize.classList.toggle("fa-compress");
-  //   maximize.classList.toggle("fa-maximize");
-  // });
+  const maximize = document.querySelector(".fa-compress");
+  maximize.addEventListener("click", () => {
+    map.classList.toggle("max");
+    maximize.classList.toggle("fa-compress");
+    maximize.classList.toggle("fa-maximize");
+  });
 
   const locations = await fetch("./images/location.json");
   const data = await locations.json();

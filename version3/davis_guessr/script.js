@@ -1,50 +1,33 @@
 (async () => {
-  // Get the canvas element
-  const canvas = document.getElementById("compass");
-  const ctx = canvas.getContext("2d");
-
-  // Set the canvas size
-  canvas.width = 300;
-  canvas.height = 300;
-
-  // Define the center point of the compass
-  const centerX = canvas.width / 2;
-  const centerY = canvas.height / 2;
-
-  // Define the angle for the compass needle (in degrees)
-  const compassAngle = 45;
-
-  // Clear the canvas
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  // Draw the compass circle
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, 130, 0, 2 * Math.PI);
-  ctx.lineWidth = 4;
-  ctx.strokeStyle = "#333";
-  ctx.stroke();
-
-  // Draw the compass needle
-  ctx.beginPath();
-  ctx.moveTo(centerX, centerY);
-  const endX = centerX + Math.sin(compassAngle * (Math.PI / 180)) * 100;
-  const endY = centerY - Math.cos(compassAngle * (Math.PI / 180)) * 100;
-  ctx.lineTo(endX, endY);
-  ctx.lineWidth = 2;
-  ctx.strokeStyle = "red";
-  ctx.stroke();
-
-  // Draw a small circle at the center of the compass
-  ctx.beginPath();
-  ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
-  ctx.fillStyle = "black";
-  ctx.fill();
-
-  // Draw text indicating the angle
-  ctx.font = "16px Arial";
-  ctx.fillStyle = "#333";
-  ctx.textAlign = "center";
-  ctx.fillText(`Angle: ${compassAngle}°`, centerX, centerY + 80);
+  // const canvas = document.getElementById("compass");
+  // const ctx = canvas.getContext("2d");
+  // canvas.width = 300;
+  // canvas.height = 300;
+  // const centerX = canvas.width / 2;
+  // const centerY = canvas.height / 2;
+  // const compassAngle = 45;
+  // ctx.clearRect(0, 0, canvas.width, canvas.height);
+  // ctx.beginPath();
+  // ctx.arc(centerX, centerY, 130, 0, 2 * Math.PI);
+  // ctx.lineWidth = 4;
+  // ctx.strokeStyle = "#333";
+  // ctx.stroke();
+  // ctx.beginPath();
+  // ctx.moveTo(centerX, centerY);
+  // const endX = centerX + Math.sin(compassAngle * (Math.PI / 180)) * 100;
+  // const endY = centerY - Math.cos(compassAngle * (Math.PI / 180)) * 100;
+  // ctx.lineTo(endX, endY);
+  // ctx.lineWidth = 2;
+  // ctx.strokeStyle = "red";
+  // ctx.stroke();
+  // ctx.beginPath();
+  // ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
+  // ctx.fillStyle = "black";
+  // ctx.fill();
+  // ctx.font = "16px Arial";
+  // ctx.fillStyle = "#333";
+  // ctx.textAlign = "center";
+  // ctx.fillText(`Angle: ${compassAngle}°`, centerX, centerY + 80);
 
   const img = document.querySelector("#img");
   const guess = document.querySelector("#guess");

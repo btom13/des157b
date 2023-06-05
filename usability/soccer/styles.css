@@ -1,0 +1,11 @@
+body {
+  height: 100vh;
+  width: 100vw;
+  background-color: #3290c5;
+  display: flex;
+  overflow: none;
+}
+#canvas {
+  margin: auto;
+  background-color: green;
+}
