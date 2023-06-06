@@ -29,13 +29,14 @@
   // ctx.textAlign = "center";
   // ctx.fillText(`Angle: ${compassAngle}°`, centerX, centerY + 80);
 
+  let dialog_up = false;
   const img = document.querySelector("#img");
   const guess = document.querySelector("#guess");
   const dialog = document.querySelector("dialog");
   const dialogText = document.querySelector("p");
   const but = document.querySelector("#dialog-click");
   let total_score = 0;
-  const m = L.map("map").setView([38.5382, -121.7617], 14);
+  const m = L.map("map").setView([38.5272, -121.7487], 14);
   // https://stackoverflow.com/questions/639695/how-to-convert-latitude-or-longitude-to-meters
   function meters(lat1, lon1, lat2, lon2) {
     // generally used geo measurement function
@@ -61,6 +62,7 @@
   let position;
 
   function onMapClick(e) {
+    if (dialog_up) return;
     if (position) {
       m.removeLayer(position);
     }
@@ -91,7 +93,7 @@
   const data = await locations.json();
   const images = Object.keys(data);
   const image_arr = [];
-  let location, circle;
+  let location, circle, line;
   while (image_arr.length < 5) {
     const random = Math.floor(Math.random() * images.length);
     if (!image_arr.includes(images[random])) {
@@ -104,16 +106,17 @@
   function next() {
     img.src = `./images/${image_arr[current]}`;
     location = data[image_arr[current]];
-    guess.classList.add("not-chosen");
     current++;
     if (position) m.removeLayer(position);
     if (circle) m.removeLayer(circle);
+    if (line) m.removeLayer(line);
   }
   but.addEventListener("click", (e) => {
     if (current === 4) {
       guess.classList.add("not-chosen");
       if (position) m.removeLayer(position);
       if (circle) m.removeLayer(circle);
+      if (line) m.removeLayer(line);
       setTimeout(() => {
         dialogText.textContent = `You scored ${total_score} points!`;
         dialog.show();
@@ -121,6 +124,7 @@
       }, 10);
       return;
     }
+    dialog_up = false;
     next();
   });
   guess.addEventListener("click", () => {
@@ -140,11 +144,22 @@
       fillOpacity: 0.5,
       radius: 10,
     }).addTo(m);
+    line = L.polyline(
+      [
+        [lat, lng],
+        [location.lat, location.lng],
+      ],
+      { color: "gray", weight: 1 }
+    ).addTo(m);
+
     dialogText.textContent = `You were ${Math.round(
       meters(lat, lng, location.lat, location.lng),
       2
     )} meters away. You scored ${score} points.`;
     total_score += score;
+    dialog_up = true;
+    guess.classList.add("not-chosen");
+
     dialog.show();
   });
   next();
