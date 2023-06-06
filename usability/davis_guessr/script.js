@@ -77,11 +77,15 @@
 
   const map = document.querySelector("#map");
   const maximize = document.querySelector(".fa-compress");
+  // click maximize after 0.2 seconds to prevent map from being too small
   maximize.addEventListener("click", () => {
     map.classList.toggle("max");
     maximize.classList.toggle("fa-compress");
     maximize.classList.toggle("fa-maximize");
   });
+  setTimeout(() => {
+    maximize.click();
+  }, 2);
 
   const locations = await fetch("./images/location.json");
   const data = await locations.json();
