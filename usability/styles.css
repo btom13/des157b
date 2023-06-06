@@ -1,3 +1,7 @@
+:root {
+  --hover: false;
+}
+
 body {
   width: 100vw;
   height: 100vh;
@@ -13,26 +17,11 @@ body {
   background-color: #d37e29;
   padding: 10px;
 }
-/* 
-#seal {
-  height: 100vh;
-  width: 100%;
-  background-color: #3290c5;
-  position: relative;
-} */
 
 h1,
 h2 {
   text-align: center;
 }
-
-/* img {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 80%;
-} */
 
 #seal {
   position: absolute;

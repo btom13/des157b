@@ -75,11 +75,13 @@ body {
 
 #back {
   position: absolute;
-  height: 50px;
-  width: 50px;
-  background-color: gray;
+  font-size: xx-large;
   text-align: center;
   margin: 10px;
+}
+
+#back:hover {
+  cursor: pointer;
 }
 
 #compass {

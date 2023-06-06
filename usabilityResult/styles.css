@@ -1,0 +1,19 @@
+body {
+  background-color: #AC8E60;
+}
+#heading {
+  text-align: center;
+  font-family: andale mono, monospace;
+  font-size: 36px;
+  color: white;
+  padding-top: 20px
+}
+
+#text {
+  font-family: andale mono, monospace;
+  font-size: 24px;
+  padding-left: 350px;
+  padding-right: 350px;
+  padding-top: 25px;
+  color: white;
+}

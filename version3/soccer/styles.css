@@ -9,3 +9,16 @@ body {
   margin: auto;
   background-color: green;
 }
+
+#back {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  background-color: gray;
+  text-align: center;
+  margin: 10px;
+}
+
+#back:hover {
+  cursor: pointer;
+}
