@@ -1,8 +1,13 @@
+:root {
+  --hover: false;
+}
+
 body {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
   display: flex;
+  background-color: #3290c5;
   flex-direction: row;
 }
 
@@ -13,48 +18,139 @@ body {
   padding: 10px;
 }
 
-#seal {
-  height: 100vh;
-  width: 100%;
-  background-color: #3290c5;
-  position: relative;
-}
-
 h1,
 h2 {
   text-align: center;
 }
 
-img {
+#seal {
   position: absolute;
+  top: -15%;
+}
+
+dialog {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 80%;
 }
 
-.temp-link {
-  width: 100px;
-  height: 100px;
-  background-color: red;
+#bg {
   position: absolute;
-  top: 60%;
-  left: 45%;
+  width: 818px;
+  height: 824.5px;
+  left: 347px;
+  top: 157px;
 }
-
-.temp-link-2 {
-  width: 100px;
-  height: 100px;
-  background-color: green;
+#mask1 {
   position: absolute;
-  top: 55%;
-  left: 55%;
+  width: 235.6px;
+  height: 231px;
+  left: 473.64px;
+  top: 244.11px;
+  transition: transform 0.2s;
 }
 
-.temp-link:hover {
+#mask1:hover {
+  transform: scale(1.5);
+  z-index: 2;
   cursor: pointer;
 }
 
-.temp-link-2:hover {
+#mask2 {
+  position: absolute;
+  width: 209.33px;
+  height: 189.71px;
+  left: 643.24px;
+  top: 222.51px;
+  transition: transform 0.2s;
+}
+
+#mask2:hover {
+  transform: scale(1.5);
+  z-index: 2;
   cursor: pointer;
+}
+
+#mask3 {
+  position: absolute;
+  width: 211.74px;
+  height: 219.24px;
+  left: 813.48px;
+  top: 233.73px;
+  transition: transform 0.2s;
+}
+
+#mask3:hover {
+  transform: scale(1.5);
+  z-index: 2;
+}
+
+#mask4 {
+  position: absolute;
+  width: 203.13px;
+  height: 204.63px;
+  left: 901.12px;
+  top: 346.8px;
+  transition: transform 0.2s;
+}
+
+#mask4:hover {
+  transform: scale(1.5);
+  z-index: 2;
+}
+
+#mask5 {
+  position: absolute;
+  width: 231.61px;
+  height: 229.62px;
+  left: 417.16px;
+  top: 573.34px;
+  transition: transform 0.2s;
+}
+
+#mask5:hover {
+  transform: scale(1.5);
+  z-index: 2;
+}
+
+#mask6 {
+  position: absolute;
+  width: 227.19px;
+  height: 243.7px;
+  left: 510.9px;
+  top: 666.5px;
+  transition: transform 0.2s;
+}
+
+#mask6:hover {
+  transform: scale(1.5);
+  z-index: 2;
+}
+
+#mask7 {
+  position: absolute;
+  width: 214.69px;
+  height: 200.29px;
+  left: 700.47px;
+  top: 716.05px;
+  transition: transform 0.2s;
+}
+
+#mask7:hover {
+  transform: scale(1.5);
+  z-index: 2;
+}
+
+#mask8 {
+  position: absolute;
+  width: 237.7px;
+  height: 240.42px;
+  left: 826.57px;
+  top: 640.67px;
+  transition: transform 0.2s;
+}
+
+#mask8:hover {
+  transform: scale(1.5);
+  z-index: 2;
 }
