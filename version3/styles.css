@@ -34,15 +34,34 @@ dialog {
   transform: translate(-50%, -50%);
 }
 
+#seal {
+  position: relative;
+  width: fit-content;
+  height: fit-content;
+  top: 0px;
+  left: 0px;
+  margin-top: 35px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #bg {
-  position: absolute;
+  position: relative;
   width: 818px;
   height: 824.5px;
-  left: 347px;
-  top: 157px;
+  left: 0px;
+  top: 0px;
+}
+
+.seal-main {
+  position: absolute;
+  left: -347px;
+  top: -157px;
+}
+.inner {
+  position: absolute;
 }
 #mask1 {
-  position: absolute;
   width: 235.6px;
   height: 231px;
   left: 473.64px;
@@ -57,7 +76,6 @@ dialog {
 }
 
 #mask2 {
-  position: absolute;
   width: 209.33px;
   height: 189.71px;
   left: 643.24px;
@@ -72,7 +90,6 @@ dialog {
 }
 
 #mask3 {
-  position: absolute;
   width: 211.74px;
   height: 219.24px;
   left: 813.48px;
@@ -86,7 +103,6 @@ dialog {
 }
 
 #mask4 {
-  position: absolute;
   width: 203.13px;
   height: 204.63px;
   left: 901.12px;
@@ -100,7 +116,6 @@ dialog {
 }
 
 #mask5 {
-  position: absolute;
   width: 231.61px;
   height: 229.62px;
   left: 417.16px;
@@ -114,7 +129,6 @@ dialog {
 }
 
 #mask6 {
-  position: absolute;
   width: 227.19px;
   height: 243.7px;
   left: 510.9px;
@@ -128,7 +142,6 @@ dialog {
 }
 
 #mask7 {
-  position: absolute;
   width: 214.69px;
   height: 200.29px;
   left: 700.47px;
@@ -142,7 +155,6 @@ dialog {
 }
 
 #mask8 {
-  position: absolute;
   width: 237.7px;
   height: 240.42px;
   left: 826.57px;
