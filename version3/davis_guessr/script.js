@@ -1,39 +1,15 @@
 (async () => {
-  // const canvas = document.getElementById("compass");
-  // const ctx = canvas.getContext("2d");
-  // canvas.width = 300;
-  // canvas.height = 300;
-  // const centerX = canvas.width / 2;
-  // const centerY = canvas.height / 2;
-  // const compassAngle = 45;
-  // ctx.clearRect(0, 0, canvas.width, canvas.height);
-  // ctx.beginPath();
-  // ctx.arc(centerX, centerY, 130, 0, 2 * Math.PI);
-  // ctx.lineWidth = 4;
-  // ctx.strokeStyle = "#333";
-  // ctx.stroke();
-  // ctx.beginPath();
-  // ctx.moveTo(centerX, centerY);
-  // const endX = centerX + Math.sin(compassAngle * (Math.PI / 180)) * 100;
-  // const endY = centerY - Math.cos(compassAngle * (Math.PI / 180)) * 100;
-  // ctx.lineTo(endX, endY);
-  // ctx.lineWidth = 2;
-  // ctx.strokeStyle = "red";
-  // ctx.stroke();
-  // ctx.beginPath();
-  // ctx.arc(centerX, centerY, 5, 0, 2 * Math.PI);
-  // ctx.fillStyle = "black";
-  // ctx.fill();
-  // ctx.font = "16px Arial";
-  // ctx.fillStyle = "#333";
-  // ctx.textAlign = "center";
-  // ctx.fillText(`Angle: ${compassAngle}°`, centerX, centerY + 80);
+  const help = document.querySelector(".fa-question-circle");
+  const help1 = document.querySelector("#help");
+  help.onclick = () => {
+    help1.show();
+  };
 
   let dialog_up = false;
   const img = document.querySelector("#img");
   const guess = document.querySelector("#guess");
-  const dialog = document.querySelector("dialog");
-  const dialogText = document.querySelector("p");
+  const dialog = document.querySelector("#next");
+  const dialogText = dialog.querySelector("p");
   const but = document.querySelector("#dialog-click");
   let total_score = 0;
   const m = L.map("map").setView([38.5272, -121.7487], 14);
@@ -71,7 +47,7 @@
       color: "black",
       fillColor: "#000",
       fillOpacity: 0.5,
-      radius: 10,
+      radius: 15,
     }).addTo(m);
   }
 
@@ -142,14 +118,14 @@
       color: "red",
       fillColor: "#f03",
       fillOpacity: 0.5,
-      radius: 10,
+      radius: 15,
     }).addTo(m);
     line = L.polyline(
       [
         [lat, lng],
         [location.lat, location.lng],
       ],
-      { color: "gray", weight: 1 }
+      { color: "gray", weight: 2 }
     ).addTo(m);
 
     dialogText.textContent = `You were ${Math.round(

@@ -28,12 +28,24 @@
     <title>Davis Guesser</title>
   </head>
   <body>
+    <i class="fa fa-question-circle"></i>
+
     <i
       class="fa fa-arrow-left"
       id="back"
       onclick="window.location.href='..'"
     ></i>
-    <dialog>
+    <dialog id="help">
+      <p>
+        Here are some images of well known places and buildings in UC Davis (as
+        well as some lesser known ones). Can you guess where they are on the
+        map?
+      </p>
+      <form method="dialog">
+        <button id="dialog-click1">OK</button>
+      </form>
+    </dialog>
+    <dialog id="next">
       <p></p>
       <form method="dialog">
         <button id="dialog-click">Next</button>
@@ -42,7 +54,6 @@
 
     <img id="img" />
     <div id="map-div">
-      <!-- <canvas id="compass"></canvas> -->
       <div id="map" class="max"></div>
       <i class="fa-solid fa-compress"></i>
       <div id="guess">Guess</div>

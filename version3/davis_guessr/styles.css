@@ -10,6 +10,15 @@ dialog {
   position: absolute;
   top: 40%;
   z-index: 4;
+  font-size: x-large;
+}
+dialog#help {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border-radius: 10px;
+  padding: 1em;
 }
 #guess {
   position: absolute;
@@ -23,6 +32,7 @@ dialog {
   padding: 0.5em;
   z-index: 3;
 }
+
 #guess:hover {
   cursor: pointer;
 }
@@ -80,8 +90,17 @@ body {
   margin: 10px;
 }
 
-#back:hover {
+.fa:hover {
   cursor: pointer;
+}
+
+.fa-question-circle {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  font-size: xx-large;
+  text-align: center;
+  margin: 10px;
 }
 
 #compass {
