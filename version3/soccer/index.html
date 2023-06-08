@@ -17,6 +17,27 @@
     <title>soccer</title>
   </head>
   <body>
+    <dialog open>
+      <p>
+        Welcome! Use the "w" and "s" keys to control the left player and the up
+        and down arrow keys to control the right player. This section of the
+        seal showcases children playing soccer and otherwise enjoying
+        themselves. Davis has had made many efforts to provide a safe and fun
+        environment for children to play in. However, unfortunately not all
+        children have had the same opportunities to play. Several groups of
+        children have been unable to live a carefree childhood due to
+        unfortunate circumstances. Click
+        <a
+          href="https://susanshelton.com/Seals/Davis-Centennial-Seal/Description-of-Childrens-Panel"
+          >here</a
+        >
+        to learn more.
+      </p>
+      <form method="dialog">
+        <button id="dialog-click">Done</button>
+      </form>
+    </dialog>
+
     <i
       class="fa fa-arrow-left"
       id="back"
@@ -26,6 +47,13 @@
       <div class="bar"></div>
       <canvas id="canvas"></canvas>
       <div class="bar"></div>
+    </div>
+    <div id="ai">
+      Auto
+      <label class="switch">
+        <input type="checkbox" id="ai-box" />
+        <span class="slider round"></span>
+      </label>
     </div>
   </body>
 </html>

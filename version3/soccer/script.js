@@ -48,6 +48,7 @@ document.addEventListener("keydown", function (event) {
 document.addEventListener("keyup", function (event) {
   keys[event.code] = false;
 });
+const aiBox = document.getElementById("ai-box");
 
 const goalHeight = canvasHeight / 3;
 const goalColor = "gray";
@@ -67,7 +68,7 @@ const rightGoal = new Goal(
 );
 
 // game loop
-function update() {
+function update(cont = true) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   // left ai
   let ai_velocity = 3;
@@ -98,26 +99,57 @@ function update() {
     }
   }
   // player movement
-  if (keys["KeyW"]) {
-    balls[1].dy = -6;
-  } else if (keys["KeyS"]) {
-    balls[1].dy = 6;
-  } else {
-    balls[1].dy = 0;
-  }
-  if (keys["KeyW"] && keys["KeyS"]) {
-    balls[1].dy = 0;
-  }
+  if (!aiBox.checked) {
+    if (keys["KeyW"]) {
+      balls[1].dy = -6;
+    } else if (keys["KeyS"]) {
+      balls[1].dy = 6;
+    } else {
+      balls[1].dy = 0;
+    }
+    if (keys["KeyW"] && keys["KeyS"]) {
+      balls[1].dy = 0;
+    }
 
-  if (keys["ArrowUp"]) {
-    balls[0].dy = -6;
-  } else if (keys["ArrowDown"]) {
-    balls[0].dy = 6;
+    if (keys["ArrowUp"]) {
+      balls[0].dy = -6;
+    } else if (keys["ArrowDown"]) {
+      balls[0].dy = 6;
+    } else {
+      balls[0].dy = 0;
+    }
+    if (keys["ArrowUp"] && keys["ArrowDown"]) {
+      balls[0].dy = 0;
+    }
   } else {
-    balls[0].dy = 0;
-  }
-  if (keys["ArrowUp"] && keys["ArrowDown"]) {
-    balls[0].dy = 0;
+    // left ai
+    let ai_velocity = 3;
+    if (balls[0].y < balls[4].y - 3) {
+      balls[0].dy = ai_velocity;
+    } else if (balls[0].y > balls[4].y + 3) {
+      balls[0].dy = -ai_velocity;
+    } else {
+      balls[0].dy = 0;
+    }
+    if (balls[0].x > balls[4].x) {
+      if (Math.abs(balls[0].y - balls[4].y) < 150) {
+        balls[0].dy *= -1.4;
+      }
+    }
+    // right ai
+    ai_velocity = 4;
+    if (balls[1].y < balls[4].y - 3) {
+      balls[1].dy = ai_velocity;
+    } else if (balls[1].y > balls[4].y + 3) {
+      balls[1].dy = -ai_velocity;
+    } else {
+      balls[1].dy = 0;
+    }
+    if (balls[1].x > balls[4].x) {
+      if (Math.abs(balls[1].y - balls[4].y) < 150) {
+        balls[1].dy *= -1.4;
+      }
+    }
   }
 
   // goal detection
@@ -285,8 +317,7 @@ function update() {
   ctx.font = "24px Arial";
   ctx.fillText(leftGoal.score, 20, 40);
   ctx.fillText(rightGoal.score, canvasWidth + goalWidth + 6, 40);
-
-  requestAnimationFrame(update);
+  if (cont) requestAnimationFrame(update);
 }
 
 // reset the position of the balls
@@ -337,5 +368,8 @@ addBall(
   "white",
   true
 );
-
-update();
+const dialogClick = document.getElementById("dialog-click");
+dialogClick.addEventListener("click", () => {
+  update();
+});
+update(false);
