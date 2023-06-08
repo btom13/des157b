@@ -138,6 +138,7 @@ dialog {
 #mask6:hover {
   transform: scale(1.5);
   z-index: 2;
+  cursor: pointer;
 }
 
 #mask7 {
