@@ -85,6 +85,7 @@ dialog {
 #mask2:hover {
   transform: scale(1.5);
   z-index: 2;
+  cursor: pointer;
 }
 
 #mask3 {
