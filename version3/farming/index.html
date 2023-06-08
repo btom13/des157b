@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+      rel="stylesheet"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="styles.css" rel="stylesheet" />
+    <script src="script.js" defer></script>
+
+    <title>Farming</title>
+  </head>
+  <body>
+    <div id="game-container">
+      <div id="game-status">
+        <div>
+          Money
+          <div id="money-display">$0</div>
+        </div>
+        <div>
+          Season
+          <div id="season-display">spring</div>
+        </div>
+        <div>
+          Day
+          <div id="day-display">1</div>
+        </div>
+        <div>
+          Day of the week
+          <div id="day-of-the-week"></div>
+        </div>
+        <div>
+          Hunger
+          <div id="hunger-display">10</div>
+        </div>
+      </div>
+
+      <div id="controls">
+        <div id="plant">
+          <button id="plant-all-button" class="control-button">
+            Plant All
+          </button>
+          <select id="crop-selector" class="control-select"></select>
+        </div>
+        <div id="eat">
+          <button id="eat-button" class="control-button">Eat</button>
+          <select id="crop-to-eat" class="control-select"></select>
+        </div>
+        <button id="harvest-all-button" class="control-button">
+          Harvest All
+        </button>
+        <button id="buy-plot-button" class="control-button">Buy Plot</button>
+        <button id="next-day-button" class="control-button">Next Day</button>
+        <button id="sell-button" class="control-button">Sell Crops</button>
+        <button id="buy-button" class="control-button">Buy Food</button>
+      </div>
+      <div id="plot-container"></div>
+    </div>
+    <div id="left-bar">
+      <div id="quest-container">
+        <h2 id="quest">Current Quest</h2>
+        <p id="current-quest"></p>
+        <button id="turn-in-button">Complete</button>
+      </div>
+      <div id="inventory">
+        <h2>Inventory</h2>
+        <ul id="inventory-display" class="inventory-list"></ul>
+      </div>
+    </div>
+
+    <dialog id="game-over-dialog">
+      <h2>Game Over</h2>
+      <p>Your hunger has reached 0.</p>
+      <button id="restart-button">Restart</button>
+    </dialog>
+  </body>
+</html>
